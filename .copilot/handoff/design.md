@@ -1,15 +1,21 @@
-SimpleGain 設計書
-クラス構成
-SimpleGainProcessor : juce::AudioProcessor
-APVTS でパラメータ管理
-processBlock でゲイン適用
-SimpleGainEditor : juce::AudioProcessorEditor
-スライダー1本（Gain）
-トグルボタン1個（Bypass）
-オーディオ処理フロー
-APVTS から gain_db を取得
-dB → リニア変換: gain = pow(10, gain_db / 20.0)
-全チャンネル・全サンプルに乗算
-bypass == 1 なら処理スキップ
-ファイル構成
+# SimpleGain 設計書
+
+## クラス構成
+
+-   SimpleGainProcessor : juce::AudioProcessor
+    -   APVTS でパラメータ管理
+    -   processBlock でゲイン適用
+-   SimpleGainEditor : juce::AudioProcessorEditor
+    -   スライダー1本（Gain）
+    -   トグルボタン1個（Bypass）
+
+## オーディオ処理フロー
+
+1.  APVTS から gain\_db を取得
+2.  dB → リニア変換: gain = pow(10, gain\_db / 20.0)
+3.  全チャンネル・全サンプルに乗算
+4.  bypass == 1 なら処理スキップ
+
+## ファイル構成
+
 Source/ PluginProcessor.h PluginProcessor.cpp PluginEditor.h PluginEditor.cpp Parameters.h

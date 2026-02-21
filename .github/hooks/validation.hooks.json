@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Session started | branch: $(git branch --show-current 2>/dev/null || echo 'detached') | dir: $(pwd)\" >> .copilot/session.log; echo '{}' > .copilot/fix-counter.json 2>/dev/null || true",
+        "timeoutSec": 5
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "./scripts/fix-counter.sh",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}

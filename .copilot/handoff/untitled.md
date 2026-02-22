@@ -1,1 +1,1 @@
-find ~/Desktop/test/tools/plugin-analyser -name "\*.csv" ls -la ~/Desktop/test/tools/plugin-analyser/
+`copilot/handoff/spec.md`

@@ -1,0 +1,1 @@
+今テストでファイルを送りたいなら、そこに `.copilot/handoff/spec.md` と入力して OK を押せば送れ

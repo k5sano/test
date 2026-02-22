@@ -1,7 +1,9 @@
-スケルトンコード
-CMakeLists.txt
-Copy
-cmake_minimum_required(VERSION 3.22)
+# スケルトンコード
+
+## CMakeLists.txt
+
+```cmake
+Copycmake_minimum_required(VERSION 3.22)
 project(SimpleGain VERSION 1.0.0)
 
 find_package(JUCE CONFIG REQUIRED)
@@ -28,10 +30,12 @@ target_link_libraries(SimpleGain
     PUBLIC
         juce::juce_recommended_config_flags
 )
+```
 
-Parameters.h
-Copy
-#pragma once
+## Parameters.h
+
+```cpp
+Copy#pragma once
 #include <juce_audio_processors/juce_audio_processors.h>
 
 namespace SimpleGainParams {
@@ -46,3 +50,4 @@ namespace SimpleGainParams {
         return { params.begin(), params.end() };
     }
 }
+```

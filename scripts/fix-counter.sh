@@ -1,7 +1,8 @@
-#!/bin/bash
+```bash
+Copy#!/bin/bash
 # fix-counter.sh
-# postToolUse hookから呼ばれる。
-# src/ 配下のファイル編集回数を記録し、3回到達で自動ロールバック。
+# Claude Code の hook から呼ばれる。
+# Source/ 配下のファイル編集回数を記録し、3回到達で自動ロールバック。
 
 set -eo pipefail
 
@@ -23,13 +24,13 @@ if [[ -z "$FILE_PATH" ]]; then
   exit 0
 fi
 
-# src/ 配下のファイルのみ追跡
-if [[ "$FILE_PATH" != src/* && "$FILE_PATH" != Source/* ]]; then
+# Source/ 配下のファイルのみ追跡
+if [[ "$FILE_PATH" != Source/* && "$FILE_PATH" != Source/DSP/* ]]; then
   exit 0
 fi
 
-COUNTER_FILE=".copilot/fix-counter.json"
-mkdir -p .copilot
+COUNTER_FILE=".claude/fix-counter.json"
+mkdir -p .claude
 
 # カウンターファイル初期化
 if [[ ! -f "$COUNTER_FILE" ]] || [[ ! -s "$COUNTER_FILE" ]]; then
@@ -59,15 +60,17 @@ if [[ $NEW -ge 3 ]]; then
     && mv "${COUNTER_FILE}.tmp" "$COUNTER_FILE"
 
   # エスカレーションレポートに追記
-  REPORT=".copilot/escalation-report.md"
+  REPORT=".claude/escalation-report.md"
   {
     echo ""
     echo "## Rollback: $FILE_PATH ($(date '+%Y-%m-%d %H:%M:%S'))"
     echo "- 修正試行回数: $NEW"
     echo "- ファイルをHEADに復元しました"
-    echo "- Claude Opus によるエスカレーションが必要です"
+    echo "- エスカレーションが必要です"
     echo ""
   } >> "$REPORT"
 
   echo "[HOOK] エスカレーションレポート: $REPORT" >&2
 fi
+Copy
+```
